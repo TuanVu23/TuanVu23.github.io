@@ -248,7 +248,7 @@
 </div>
 <!--//requested-movies-->
 <!--/top-movies-->
-<h3 class="agile_w3_title">Phim <span>sắp chiếu</span> </h3>
+<a style="text-decoration: none;" href="{{route('type',3)}}"><h3 class="agile_w3_title">Phim <span>sắp chiếu</span> </h3></a>
 <div class="top_movies">
 	<div class="tab_movies_agileinfo">
 		<div class="w3_agile_featured_movies two">

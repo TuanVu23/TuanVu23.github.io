@@ -34,7 +34,7 @@
 									</li>
 								</ul>
 							</li>
-							<li><a href="{{route('reviews')}}">đánh giá phim</a></li>
+							<li><a href="{{route('reviews')}}">review phim</a></li>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Thể loại <b class="caret"></b></a>
 								<ul class="dropdown-menu multi-column columns-3">

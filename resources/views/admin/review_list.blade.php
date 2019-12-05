@@ -23,8 +23,7 @@
 			<th>Rating</th>
 			<th>Spoil</th>
 			<th>Time</th>
-			<th>Delete</th>
-			<th>Edit</th>
+			<th>Action</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -44,9 +43,13 @@
 				@else
 				<td>Yes</td>
 				@endif
-				<td>{{$review->time}}</td>
-				<td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="{{route('review_del',$review->cmt_id)}}"> Delete</a></td>
-				<td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{route('review_edit',$review->cmt_id)}}">Edit</a></td>
+				<?php $date = date_create($review->time); ?>
+				<td>{{date_format($date,"Y/m/d - H:i:s")}}</td>
+				<td class="center">					
+					<i class="fa fa-pencil fa-fw"></i> <a href="{{route('review_edit',$review->cmt_id)}}">Edit</a>
+					<br>
+					<i class="fa fa-trash-o  fa-fw"></i><a href="{{route('review_del',$review->cmt_id)}}"> Delete</a>
+				</td>
 			</tr>
 		@endforeach
 	</tbody>

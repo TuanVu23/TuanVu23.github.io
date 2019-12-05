@@ -5,7 +5,13 @@
 	<div class="breadcrumb-inner">
 		<ul>
 			<li><a href="{{route('index')}}">Home</a><i>//</i></li>
+			@if($type_id == 1)
 			<li>Now showing</li>
+			@elseif($type_id == 3)
+			<li>Coming soon</li>
+			@else
+			<li>On this month</li>
+			@endif
 		</ul>
 	</div>
 </div>

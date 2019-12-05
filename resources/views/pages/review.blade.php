@@ -37,10 +37,11 @@
 							<h4><strong>{{$content->content}}</strong></h4>
 						@endif
 					@endforeach
+					<i style="float: left; margin-bottom: 1em;">Nguồn: {{$review->url}}</i>	
 				</div>
 				<div class="single-agile-shar-buttons">
 					<a style="float: right; border-radius: .350rem; font-size: 16px; border-color: #0c0d0d;" href="{{route('movie',$review->movie_id)}}" class="btn btn-default" role="button">Xem thêm về bộ phim này</a>
-					<h5 >Share This :</h5>
+					<h5 >Chia sẻ:</h5>
 					<ul>
 						<li>
 							<div class="fb-like" data-href="{{URL::current()}}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
