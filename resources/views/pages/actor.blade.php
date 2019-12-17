@@ -19,7 +19,7 @@
 			<p class="w3ls_head_para">Từ khóa:</p>
 		</div> -->		
 		<div class="wthree_agile-requested-movies tv-movies">
-			<h3 style="text-align: center;" class="agile_w3_title hor-t">Phim của <span>{{$name}}</span></h3>
+			<h3 style="text-align: center;" class="agile_w3_title hor-t"><span>Phim</span> của {{$name}}</h3>
 			@foreach($movies as $movie)
 			<div class="col-md-2 w3l-movie-gride-agile requested-movies">
 				<a href="{{route('movie',$movie->movie_id)}}" class="hvr-sweep-to-bottom"><img src="{{$movie->poster}}" title="{{$movie->name_vi}}" class="img-responsive" alt="{{$movie->poster}}">

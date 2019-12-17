@@ -87,6 +87,29 @@
 						<input type="submit" value=" ">
 					</form>
 				</div>
+
+				<h4 class="side-t-w3l-agile">Thông tin <span>phim</span></h4>			
+				<div style="margin-bottom: 2em;" class="video_agile_player sidebar-player">
+					<div class="video-grid-single-page-agileits">
+						<div id="video4">
+							<iframe src="{{$mov->trailer}}" width="377" height="238" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						</div>
+					</div>
+					<div class="player-text side-bar-info">
+						<a style="text-decoration: none;" href="{{route('movie',$mov->movie_id)}}"><p class="fexi_header">{{$mov->name_vi}}</p></a>
+						<p class="fexi_header_para"><span class="conjuring_w3">Nội dung<label style="left: 23%;">:</label></span>{{$mov_desc}}</p>
+						<?php $date = date_create($mov->release_date); ?>
+						<p class="fexi_header_para"><span>Khởi chiếu<label style="left: 23%;">:</label></span>{{date_format($date,"d/m/Y")}}</p>
+						<p class="fexi_header_para"><span style="height: 22px;">Thể loại<label style="left: 23%;">:</label></span>
+							@foreach($gen as $g)
+							<a href="{{route('genre',$g->genre_id)}}">{{$g->description}}</a><b> | </b>
+							@endforeach
+						</p>
+						@if($movie->getRating($mov->movie_id) != 0)
+						<p class="fexi_header_para fexi_header_para1"><span>Rating<label style="left: 23%;">:</label></span><a><i class="fa fa-star" aria-hidden="true"></i></a> {{$movie->getRating($mov->movie_id)}}</p>
+						@endif
+					</div>
+				</div>
 				<div class="agile-info-recent">
 					<h4 class="side-t-w3l-agile"><span>Reviews</span> liên quan</h3>
 					<div class="w3ls-recent-grids">
@@ -126,9 +149,8 @@
 				<ul class="side-bar-agile">
 					<li><a href="single.html">John Abraham, Sonakshi Sinha and Tahir ...</a><p>Sep 29, 2016</p></li>
 				</ul> -->
-				<br>
-				<h4 class="side-t-w3l-agile"><span>Trailer</span> phim mới</h4>
 				
+				<h4 class="side-t-w3l-agile"><span>Trailer</span> phim mới</h4>			
 				<div class="video_agile_player sidebar-player">
 					<div class="video-grid-single-page-agileits">
 						<div id="video1">

@@ -89,4 +89,27 @@ class AdminController extends Controller
         }
         return redirect()->back()->with('alert', 'Update review spoil thành công');
     }
+
+    public function editSlide(){
+        if (\Auth::user() && \Auth::user()->role == 1) {
+            $slides = \DB::table('slide')->get();
+            return view('admin.slide',compact('slides'));
+        }
+        abort(403, 'Access denied! You don’t have permission to access / on this server.');
+    }
+
+    public function updateSlide(Request $request){
+        for ($i=1; $i < 5; $i++) {
+            $path = '';
+            if ($request->file('slide'.$i)) {
+                $file = $request->file('slide'.$i);
+                $fileName = $file->getClientOriginalName();
+                $image = 'uploads/slide/'.$fileName;
+                $path = 'uploads/slide';
+                $file = $file->move($path, $fileName);
+                \DB::table('slide')->where('slide_id', $i)->update(['url' => $image]);              
+            }
+        }
+        return redirect()->back()->with('alert', 'Cập nhật slide thành công');
+    }
 }

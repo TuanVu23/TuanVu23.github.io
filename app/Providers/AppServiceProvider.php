@@ -17,7 +17,8 @@ class AppServiceProvider extends ServiceProvider
             $genre1 = \DB::table('genre')->where('genre_id','<=',7)->get();
             $genre2 = \DB::table('genre')->where([['genre_id','>=',8], ['genre_id','<=', 14]])->get();
             $genre3 = \DB::table('genre')->where('genre_id','>=',15)->get();
-            $view->with('genre1', $genre1)->with('genre2', $genre2)->with('genre3', $genre3);
+            $slide = \DB::table('slide')->get();
+            $view->with('genre1', $genre1)->with('genre2', $genre2)->with('genre3', $genre3)->with('slide', $slide);
         });
         view()->composer('layouts.top', function($view){
             $genre1 = \DB::table('genre')->where('genre_id','<=',7)->get();

@@ -1,5 +1,5 @@
 <!--/banner-section-->
-<div id="demo-1" data-zs-src='["{{url("images/banner1.jpeg")}}", "{{url("images/banner2.jpg")}}", "{{url("images/banner3.jpg")}}","{{url("images/banner4.jpg")}}"]' data-zs-overlay="dots">
+<div id="demo-1" data-zs-src='["{{url($slide[0]->url)}}", "{{url($slide[1]->url)}}", "{{url($slide[2]->url)}}", "{{url($slide[3]->url)}}"]' data-zs-overlay="dots">
 	<div class="demo-inner-content">
 		<!--/header-w3l-->
 		<div class="header-w3-agileits" id="home">
@@ -105,10 +105,10 @@
 			<!--/banner-info-->
 		<div class="baner-info">
 			<h3><span>Re</span>view <span>Ph</span>im <span>Ch</span>iếu <span>R</span>ạp</h3>
-			<h4>Mới nhất và đầy đủ nhất</h4>
-			<a style="text-decoration: none;" class="w3_play_icon1" href="#small-dialog1">
+			<h4 style="font-family: 'Montserrat', sans-serif;">Mới nhất và đầy đủ nhất</h4>
+			<!-- <a style="text-decoration: none;" class="w3_play_icon1" href="#small-dialog1">
 				Xem Trailer
-			</a>
+			</a> -->
 		</div>
 			<!--/banner-ingo-->
 	</div>

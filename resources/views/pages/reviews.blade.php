@@ -49,7 +49,7 @@
 					</form>
 				</div>
 				<div class="agile-info-recent">
-					<h4 class="side-t-w3l-agile">Hot <span>Reviews</span></h4>
+					<h4 class="side-t-w3l-agile"><span>Reviews</span> xem nhiều</h4>
 					<div class="w3ls-recent-grids">
 						@foreach($hot_review as $hot)
 						<div style="margin-top: 1.2em;" class="w3l-recent-grid">

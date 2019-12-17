@@ -59,7 +59,7 @@
 					</div>
 					<div class="col-md-8">
 						<p style="margin-top: 0" class="fexi_header_para">
-							<span>Đạo diễn<label>:</label></span>
+							<span style="height: 22px;">Đạo diễn<label>:</label></span>
 							@if(!empty($director))
 								@foreach($director as $dir)
 								<strong><a href="{{route('director',$dir->director_id)}}">{{$dir->name}}</a></strong><b>, </b>
@@ -113,7 +113,11 @@
 							</ul>
 							<strong style="color: #666; font-size: 14px;">&nbsp;({{$vote}} lượt)</strong>
 						</p>
-						<p class="fexi_header_para"><span>Điểm IMDB<label>:</label></span><strong style="color: #fe423f; font-size: 15px;">7.8{{$movie->imdb}}</strong></p>
+						@if(!empty($movie->imdb))
+						<p class="fexi_header_para"><span>Điểm IMDB<label>:</label></span><strong style="color: #fe423f; font-size: 15px; font-weight: 800;">{{$movie->imdb}}</strong></p>
+						@else
+						<br>
+						@endif
 
 						<div class="list_button">
 						@if($like == 0)
@@ -134,7 +138,9 @@
 								<button data-toggle="collapse" data-target="#comment-rate" type="button" class="btn btn-default"><i class="fa fa-star"></i>&ensp;Đánh giá</button>							
 							@endif
 						@endif
+						@if($movie->type_id != 2)
 							<a target="_blank" href="{{$ticket}}" data-toggle="tooltip" title="Xem lịch chiếu và mua vé"><button style="border-color: #d43f3a;" type="button" class="btn btn-danger"><i class="fa fa-ticket"></i>&ensp;Mua vé</button></a>
+						@endif
 						</div>
 						<div style="margin: 10px 0 0 20px; font-size: 17px;" id="comment-rate" class="collapse">			
 							Vui lòng <a style="color: #fe423f;" href="{{route('login')}}">đăng nhập</a> để đánh giá

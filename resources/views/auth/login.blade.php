@@ -17,7 +17,7 @@
 			<h4>Đăng nhập</h4>
 			<div class="login-form">
 				@if(Session::has('message'))
-                <div style="margin-top: 1em;" class="alert alert-success">
+                <div style="margin-top: 1em; text-align: center;" class="alert alert-success">
                     {{ Session::get('message') }}
                     @php
                     Session::forget('message');

@@ -87,6 +87,14 @@ Route::get('admin/review_edit/{cmt_id}',[
 	'as'=>'review_edit',
 	'uses'=>'AdminController@editReview'
 ]);
+Route::get('admin/slide_edit',[
+	'as'=>'slide_edit',
+	'uses'=>'AdminController@editSlide'
+]);
+Route::post('admin/updateslide',[
+	'as'=>'updateslide',
+	'uses'=>'AdminController@updateSlide'
+]);
 
 //Watchlist
 Route::get('watchlist',[

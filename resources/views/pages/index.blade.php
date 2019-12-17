@@ -8,9 +8,9 @@
 			<!--/tab-section-->
 			<div id="horizontalTab">
 				<ul class="resp-tabs-list">
-					<li>Phim rạp mới nhất</li>				
-					<li>Phim rating cao</li>
-					<!-- <li>Popularity</li>	 -->				
+					<li>mới nhất</li>				
+					<li>rating cao</li>
+					<li>xem nhiều</li>				
 				</ul>
 				<div class="resp-tabs-container">
 					<div class="tab1">
@@ -33,7 +33,11 @@
 											@endif
 										</p>
 										<p class="fexi_header_para"><span>Khởi chiếu<label>:</label></span>{{$new_date}}</p>
+										@if(!empty($new->duration))
 										<p class="fexi_header_para"><span>Thời lượng<label>:</label></span>{{$new->duration}} phút</p>
+										@else
+										<p class="fexi_header_para"><span>Thời lượng<label>:</label></span>Đang cập nhật</p>
+										@endif
 										<p class="fexi_header_para">
 											<span style="height: 22px;">Thể loại<label>:</label></span>
 											@foreach($new_genre as $gen)
@@ -90,7 +94,7 @@
 							<div class="w3_agile_featured_movies">
 								<div class="col-md-5 video_agile_player">
 									<div class="video-grid-single-page-agileits">
-										<div id="vidsoon1">
+										<div id="video2">
 											<iframe src="{{$top->trailer}}" width="533" height="336" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
 										</div>
 									</div>
@@ -147,7 +151,7 @@
 											</div>
 										</div>
 										<div class="ribben">
-											<p>HOT</p>
+											<p>NEW</p>
 										</div>
 									</div>
 									@endforeach
@@ -158,7 +162,76 @@
 						</div>
 					</div>
 					<div class="tab3">
-
+						<div class="tab_movies_agileinfo">
+							<div class="w3_agile_featured_movies">
+								<div class="col-md-5 video_agile_player">
+									<div class="video-grid-single-page-agileits">
+										<div id="video3">
+											<iframe src="{{$view1->trailer}}" width="533" height="336" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
+										</div>
+									</div>
+									
+									<div class="player-text">
+										<a style="text-decoration: none;" href="{{route('movie',$view1->movie_id)}}"><p class="fexi_header">{{$view1->name_vi}}</p></a>
+										<p class="fexi_header_para">
+											@if(strlen($view1_desc) < 140)
+											<span class="conjuring_w3">Nội dung<label>:</label></span>{{$view1_desc}}<br><br><br>
+											@else
+											<span class="conjuring_w3">Nội dung<label>:</label></span>{{$view1_desc}}
+											@endif
+										</p>
+										<p class="fexi_header_para"><span>Khởi chiếu<label>:</label></span>{{$view1_date}}</p>
+										<p class="fexi_header_para"><span>Thời lượng<label>:</label></span>{{$view1->duration}} phút</p>
+										<p class="fexi_header_para">
+											<span style="height: 22px;">Thể loại<label>:</label></span>
+											@foreach($view1_genre as $gen)
+											<a href="{{route('genre',$gen->genre_id)}}">{{$gen->description}}</a><b> | </b>
+											@endforeach
+										</p>
+										<p class="fexi_header_para"><span>Giới hạn tuổi<label>:</label></span>{{$view1_rated->name}} - {{$view1_rated->description}}</p>
+										@if($top->getRating($view1->movie_id) != 0)
+										<p class="fexi_header_para fexi_header_para1"><span>Rating<label>:</label></span>
+										<a><i class="fa fa-star" aria-hidden="true"></i></a> {{$view1->getRating($view1->movie_id)}}</p>
+										@endif
+									</div>
+								</div>
+								<div class="col-md-7 wthree_agile-movies_list">
+									@foreach($views as $view)
+									<div class="w3l-movie-gride-agile">
+										<a href="{{route('movie',$view->movie_id)}}" class="hvr-sweep-to-bottom"><img src="{{$view->poster}}" title="{{$view->name_vi}}" class="img-responsive" alt="{{$view->poster}}">
+											<div class="w3l-action-icon"><i class="fa fa-play-circle-o" aria-hidden="true"></i></div>
+										</a>
+										<div class="mid-1 agileits_w3layouts_mid_1_home">
+											<div class="w3l-movie-text">
+												<h6><a title="{{$view->name_vi}}" href="{{route('movie',$view->movie_id)}}">{{$view->name_vi}}</a></h6>
+											</div>
+											<div class="mid-2 agile_mid_2_home">
+												<?php $date = date_create($view->release_date); ?>
+												<p>{{date_format($date,"d/m")}}</p>
+												<div class="block-stars">
+													@if($view->rated_id == 1)
+													<h4><span style="padding: .2em 1.3em .3em;" class="label label-success">P</span></h4>
+													@elseif($view->rated_id == 2)
+													<h4><span style="background-color: #e4e823;" class="label">C-13</span></h4>
+													@elseif($view->rated_id == 3)
+													<h4><span class="label label-warning">C-16</span></h4>
+													@elseif($view->rated_id == 4)
+													<h4><span class="label label-danger">C-18</span></h4>
+													@endif
+												</div>
+												<div class="clearfix"></div>
+											</div>
+										</div>
+										<div class="ribben">
+											<p>NEW</p>
+										</div>
+									</div>
+									@endforeach
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<div class="cleafix"></div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -287,7 +360,7 @@
 			</div>
 			<div class="col-md-5 video_agile_player second-top">
 				<div class="video-grid-single-page-agileits">
-					<div id="video3">
+					<div id="video4">
 						<iframe src="{{$soon1->trailer}}" width="533" height="336" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
 					</div>
 				</div>

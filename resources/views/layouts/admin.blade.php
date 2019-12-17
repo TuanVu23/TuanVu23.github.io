@@ -106,6 +106,9 @@
                             <a href="{{route('review_list')}}"><i class="fa fa-comments-o fa-fw"></i> Review</a>
                         </li>
                         <li>
+                            <a href="{{route('slide_edit')}}"><i class="fa fa-picture-o fa-fw"></i> Slide</a>
+                        </li>
+                        <li>
                             <a href="#"><i class="fa fa-film fa-fw"></i> Movie<span class="fa arrow"></span></a>
                             <!-- <ul class="nav nav-second-level">
                                 <li>
@@ -171,6 +174,70 @@
                     }
                 });
                 return false;
+            });
+        });
+        $(document).ready(function() {   
+            var readURL = function(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('.slideshow1').attr('src', e.target.result);
+                    }
+            
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }               
+            $(".file-upload-slide1").on('change', function(){
+                readURL(this);
+            });
+        });
+        $(document).ready(function() {   
+            var readURL = function(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('.slideshow2').attr('src', e.target.result);
+                    }
+            
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }               
+            $(".file-upload-slide2").on('change', function(){
+                readURL(this);
+            });
+        });
+        $(document).ready(function() {   
+            var readURL = function(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('.slideshow3').attr('src', e.target.result);
+                    }
+            
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }               
+            $(".file-upload-slide3").on('change', function(){
+                readURL(this);
+            });
+        });
+        $(document).ready(function() {   
+            var readURL = function(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('.slideshow4').attr('src', e.target.result);
+                    }
+            
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }               
+            $(".file-upload-slide4").on('change', function(){
+                readURL(this);
             });
         });
     </script>

@@ -90,6 +90,24 @@ class PageController extends Controller
         }
         $top_rated = \DB::table('rated')->where('rated_id', $top->rated_id)->first();
 
+        //phim xem nhieu
+        $views = Movie::where('type_id',1)->orderBy('view','desc')->take(9)->get();
+        $view1 = $views[0]; unset($views[0]);
+        $date = date_create($view1->release_date);
+        $view1_date = date_format($date,"d/m/Y");
+        $view1_desc = $view1->description;
+        if(strlen($view1_desc) > 230){
+            $view1_desc = $this->cutString($view1_desc, 230);
+        }
+        $view1_genres = \DB::table('movie_genre')->where('movie_id', $view1->movie_id)->get();
+        $view1_genre = array();
+        $i = 0;
+        foreach ($view1_genres as $gen) {
+            $view1_genre[$i] = \DB::table('genre')->where('genre_id', $gen->genre_id)->first();
+            $i++;
+        }
+        $view1_rated = \DB::table('rated')->where('rated_id', $view1->rated_id)->first();
+
         //phim goi y
         $suggest = Movie::where('type_id',1)->orWhere('type_id',3)->orderBy('view','desc')->take(10)->get();
 
@@ -111,9 +129,7 @@ class PageController extends Controller
         }
         $soon1_rated = \DB::table('rated')->where('rated_id', $soon1->rated_id)->first();
 
-        //sap chieu nhat
-
-    	return view('pages.index', compact('latest', 'recent', 'new', 'new_desc', 'new_date', 'new_genre', 'new_rated', 'rates', 'top', 'top_desc', 'top_date', 'top_genre', 'top_rated', 'suggest', 'soons', 'soon1', 'soon1_date', 'soon1_desc', 'soon1_genre', 'soon1_rated'));
+    	return view('pages.index', compact('latest', 'recent', 'new', 'new_desc', 'new_date', 'new_genre', 'new_rated', 'rates', 'top', 'top_desc', 'top_date', 'top_genre', 'top_rated', 'suggest', 'soons', 'soon1', 'soon1_date', 'soon1_desc', 'soon1_genre', 'soon1_rated', 'views', 'view1', 'view1_date', 'view1_desc', 'view1_genre', 'view1_rated'));
     }
 
     public function getMovie($movie_id){
@@ -211,8 +227,8 @@ class PageController extends Controller
             $tab = $movie_tab[0];
         }
         $tab_desc = $tab->description;
-        if(strlen($tab_desc) > 150){
-            $tab_desc = $this->cutString($tab_desc, 150);
+        if(strlen($tab_desc) > 160){
+            $tab_desc = $this->cutString($tab_desc, 160);
         }
         $tab_genres = \DB::table('movie_genre')->where('movie_id', $tab->movie_id)->get();
         $ge = 0;
@@ -235,8 +251,8 @@ class PageController extends Controller
         //movie_tab
         $movie = Movie::where('type_id',1)->orderBy('release_date','desc')->first();
         $movie_desc = $movie->description;
-        if(strlen($movie_desc) > 150){
-            $movie_desc = $this->cutString($movie_desc, 150);
+        if(strlen($movie_desc) > 160){
+            $movie_desc = $this->cutString($movie_desc, 160);
         }
         $genres = \DB::table('movie_genre')->where('movie_id', $movie->movie_id)->get();
         $ge = 0;
@@ -250,7 +266,7 @@ class PageController extends Controller
     public function getReview($review_id){
         $review = Review::find($review_id);
         $recent = Review::where([['movie_id', $review->movie_id],['review_id', '<>', $review_id]])->get();
-        $recent1 = Review::where([['source_id', $review->source_id],['review_id', '<>', $review_id]])->orderBy('time','desc')->take(6-count($recent))->get();
+        $recent1 = Review::where([['source_id', $review->source_id],['review_id', '<>', $review_id]])->orderBy('time','desc')->take(5-count($recent))->get();
 
         //views count
         $id = $review_id;
@@ -266,11 +282,24 @@ class PageController extends Controller
             Review::where('review_id', $review_id)->update(['view' => $count->view+1]);
         }
 
+        //movie this
+        $mov = Movie::find($review->movie_id);
+        $mov_desc = $mov->description;
+        if(strlen($mov_desc) > 160){
+            $mov_desc = $this->cutString($mov_desc, 160);
+        }
+        $genres = \DB::table('movie_genre')->where('movie_id', $review->movie_id)->get();
+        $ge = 0;
+        foreach ($genres as $id) {
+            $gen[$ge] = \DB::table('genre')->where('genre_id', $id->genre_id)->first();
+            $ge++;
+        }
+
         //movie tab
         $movie = Movie::where('type_id',1)->orderBy('release_date','desc')->first();
         $movie_desc = $movie->description;
-        if(strlen($movie_desc) > 150){
-            $movie_desc = $this->cutString($movie_desc, 150);
+        if(strlen($movie_desc) > 160){
+            $movie_desc = $this->cutString($movie_desc, 160);
         }
         $genres = \DB::table('movie_genre')->where('movie_id', $movie->movie_id)->get();
         $ge = 0;
@@ -279,7 +308,7 @@ class PageController extends Controller
             $ge++;
         }
 
-        return view('pages.review', compact('review', 'recent', 'recent1', 'movie', 'movie_desc', 'genre'));
+        return view('pages.review', compact('review', 'recent', 'recent1', 'movie', 'movie_desc', 'genre', 'mov', 'mov_desc', 'gen'));
     }
 
     public function getGenre($genre_id){

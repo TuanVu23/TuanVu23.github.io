@@ -18,7 +18,7 @@
 					<!-- navbar-header -->
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav">
-							<li class="active"><a href="{{route('index')}}">Home</a></li>
+							<li><a href="{{route('index')}}">Home</a></li>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Phim <b class="caret"></b></a>
 								<ul style="width: 170px;" class="dropdown-menu multi-column columns-1">
