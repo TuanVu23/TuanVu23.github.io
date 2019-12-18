@@ -35,7 +35,7 @@
 
 	//get movie_name
 	  //chuan bi sua (khi co task -> lay phim dang chieu)
-    $movie_name = $conn->query("SELECT movie_id, name_vi, name_en FROM movie WHERE type_id = 1");
+    $movie_name = $conn->query("SELECT movie_id, name_vi, name_en FROM movie WHERE type_id = 1 ORDER BY movie_id DESC");
 	//$movie_name = $conn->query("SELECT movie_id, name_vi, name_en FROM movie");
 	$movie = array();
 	while ($row = mysqli_fetch_assoc($movie_name)) {
@@ -188,7 +188,7 @@
 		$sql = "INSERT INTO review (movie_id, url, image, time, title, header, source_id) VALUES ('$movie_id', '$url', '$image', '$time', '$title', '$header', '$source_id')";
 		if ($conn->query($sql) === TRUE){
 			echo "New review: ".$title."<br>";
-		}		
+		}
 
 		$reviewsql = $conn->query("SELECT review_id FROM review WHERE url = '$url'");
 		$row = mysqli_fetch_assoc($reviewsql);

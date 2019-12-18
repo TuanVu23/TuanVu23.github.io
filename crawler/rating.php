@@ -59,7 +59,7 @@
 	}
 
 	//get movie_name
-	$movie_name = $conn->query("SELECT movie_id, name_vi, name_en FROM movie WHERE type_id = 1");
+	$movie_name = $conn->query("SELECT movie_id, name_vi, name_en FROM movie WHERE type_id = 1 ORDER BY movie_id DESC");
 	$movie = array();
 	while ($row = mysqli_fetch_assoc($movie_name)) {
 		$key = $row['movie_id'];

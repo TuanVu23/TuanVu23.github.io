@@ -31,12 +31,15 @@
 							<p>{{$content->content}}</p>
 						@elseif($content->class == 'img')
 							<div class="video-grid-single-page-agileits">
-								<img style="border-radius: .375rem;" src="{{$content->content}}" alt="{{$content->content}}" class="img-responsive">
+								<img style="border-radius: .375rem;" src="{{$content->content}}" alt=" " class="img-responsive">
 							</div>
 						@else
 							<h4><strong>{{$content->content}}</strong></h4>
 						@endif
 					@endforeach
+					@if(!empty($rating->point))
+					<h4>Điểm đánh giá phim: {{round($rating->point, 1)}}/10</h4>
+					@endif
 					<i style="float: left; margin-bottom: 1em;">Nguồn: {{$review->url}}</i>	
 				</div>
 				<div class="single-agile-shar-buttons">

@@ -22,7 +22,7 @@
 				@foreach($reviews as $review)				
 				<div class="w3-agileits-news-one">
 					<div class="wthree-news-img">
-						<a href="{{route('review',$review->review_id)}}"><img src="{{$review->image}}" alt="{{$review->image}}"></a>
+						<a href="{{route('review',$review->review_id)}}"><img src="{{$review->image}}" alt=" "></a>
 					</div>
 					<div class="wthree-news-info">
 						<h5><a href="{{route('review',$review->review_id)}}">{{$review->title}}</a></h5>

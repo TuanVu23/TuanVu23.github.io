@@ -147,7 +147,7 @@
 						</div>
 					</div>
 				</div>
-				<div style="margin-bottom: 3em;" class="single video_agile_player">
+				<div style="margin-bottom: 1.5em;" class="single video_agile_player">
 					@if(!empty($movie->description))
 					<h4 style="text-align: center; margin-bottom: 0; font-weight: bold;">Tóm tắt nội dung</h4>
 					<p>{{$movie->description}}</p>
@@ -160,6 +160,7 @@
 					</div>
 					@endif
 				</div>
+				<i>Nguồn: {{$movie->url}}</i>				
 				@if($movie->type_id != 3)
 				<div class="response">
 					<h4>Đánh giá ({{count($comments)}})</h4>
@@ -278,11 +279,7 @@
 						@foreach($reviews as $review)
 						<div style="margin-top: 1.2em;" class="w3l-recent-grid">
 							<div class="wom">
-								@if($review->source_id == 1)
-								<a href="{{route('review',$review->review_id)}}"><img src="{{url('images/alt.jpg')}}" alt="" class="img-responsive"></a>
-								@else
-								<a href="{{route('review',$review->review_id)}}"><img src="{{$review->image}}" alt="" class="img-responsive"></a>
-								@endif
+								<a href="{{route('review',$review->review_id)}}"><img src="{{$review->image}}" alt=" " class="img-responsive"></a>
 							</div>
 							<div class="wom-right">
 								<h5 title="{{$review->title}}"><a href="{{route('review',$review->review_id)}}">{{$review->title}}</a></h5>

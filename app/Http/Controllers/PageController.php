@@ -308,7 +308,10 @@ class PageController extends Controller
             $ge++;
         }
 
-        return view('pages.review', compact('review', 'recent', 'recent1', 'movie', 'movie_desc', 'genre', 'mov', 'mov_desc', 'gen'));
+        //rating
+        $rating = Rating::where([['movie_id', $review->movie_id], ['source_id', $review->source_id]])->first();
+
+        return view('pages.review', compact('review', 'recent', 'recent1', 'movie', 'movie_desc', 'genre', 'mov', 'mov_desc', 'gen', 'rating'));
     }
 
     public function getGenre($genre_id){
