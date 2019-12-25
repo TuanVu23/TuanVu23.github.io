@@ -63,10 +63,11 @@
 
 		//check current
 		$key = array_search($url, $rowmovie);
-		unset($rowmovie[$key]);		
-
+		if ($key !== FALSE) {
+			unset($rowmovie[$key]);
+		}			
 		//$result = $conn->query("SELECT * FROM movie WHERE url ='$url'");
-		if ($key === FALSE) {
+		else {
 			//check soon
 			$keyy = array_search($url, $soonmovie);
 			if ($keyy !== FALSE) {
