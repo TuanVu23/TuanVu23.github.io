@@ -36,7 +36,7 @@ class WatchListController extends Controller
                 $suggest = array_unique($suggest);
             }
             else{
-                $suggest = Movie::orderBy('view','desc')->take(10)->get();
+                $suggest = Movie::where('type_id','<>','2')->orderBy('view','desc')->take(10)->get();
             }
             return view('pages.watchlist', compact('list', 'suggest'));
         }

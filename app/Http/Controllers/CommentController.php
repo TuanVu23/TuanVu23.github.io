@@ -9,7 +9,10 @@ class CommentController extends Controller
 {
     public function saveComment(Request $rq, $movie_id){
     	$rate = $rq->stars;
-    	$content = $rq->review;
+        $content = '';
+        if($rq->review){
+            $content = $rq->review;
+        }   	
     	$spoil = 0;
     	if ($rq->checkbox == 'on'){
     		$spoil = 1;

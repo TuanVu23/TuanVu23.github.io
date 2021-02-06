@@ -5,7 +5,7 @@
 				<ul>
 					<li style="letter-spacing: 1px; list-style: none; display: inline-block; color: #fff; margin-right: 1em;"><i class="fa fa-phone" aria-hidden="true"></i> (+84) 123 456 789</li>
 					<li>
-						<div class="fb-like" data-href="https://www.facebook.com/TrenDuongPitch/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+						<div class="fb-like" data-href="https://www.facebook.com/cuongphimreview/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
 						<script>(function(d, s, id) {
 						var js, fjs = d.getElementsByTagName(s)[0];
 						if (d.getElementById(id)) return;

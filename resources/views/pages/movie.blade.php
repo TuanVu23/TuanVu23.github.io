@@ -114,7 +114,7 @@
 							<strong style="color: #666; font-size: 14px;">&nbsp;({{$vote}} lượt)</strong>
 						</p>
 						@if(!empty($movie->imdb))
-						<p class="fexi_header_para"><span>Điểm IMDB<label>:</label></span><strong style="color: #fe423f; font-size: 15px; font-weight: 800;">{{$movie->imdb}}</strong></p>
+						<p class="fexi_header_para"><span>Điểm IMDB<label>:</label></span><strong style="color: #fe423f; font-size: 15px; font-weight: 800;">{{$movie->imdb}}/10</strong></p>
 						@else
 						<br>
 						@endif
@@ -140,6 +140,8 @@
 						@endif
 						@if($movie->type_id != 2)
 							<a target="_blank" href="{{$ticket}}" data-toggle="tooltip" title="Xem lịch chiếu và mua vé"><button style="border-color: #d43f3a;" type="button" class="btn btn-danger"><i class="fa fa-ticket"></i>&ensp;Mua vé</button></a>
+						@else
+							<a href="#" title="Link xem phim online"><button style="border-color: #d43f3a;" type="button" class="btn btn-danger"><i class="fa fa-play-circle"></i>&ensp;Xem online</button></a>
 						@endif
 						</div>
 						<div style="margin: 10px 0 0 20px; font-size: 17px;" id="comment-rate" class="collapse">			
@@ -167,6 +169,7 @@
 					<div class="comments-container">						
 						<ul class="comments-list">
 							@if(!empty($comment))
+							
 							<li>
 								<div class="comment-main-level">
 									<div class="comment-avatar"><img src="{{url($comment->getUser->avatar)}}" alt=""></div>
@@ -193,12 +196,14 @@
 									</div>
 								</div>
 							</li>
+							
 							@endif
 						</ul>
 						<ul id="cmtList" class="comments-list">
 							@if(Auth::user())
 							@foreach($comments as $com)
-								@if(Auth::user()->user_id != $com->user_id)	
+								@if(Auth::user()->user_id != $com->user_id)
+								@if(!empty($com->content))
 								<li>
 									<div class="comment-main-level">
 										<div class="comment-avatar"><img src="{{url($com->getUser->avatar)}}" alt=""></div>
@@ -223,9 +228,11 @@
 									</div>
 								</li>
 								@endif
+								@endif
 							@endforeach
 							@else
 							@foreach($comments as $com)
+							@if(!empty($com->content))
 							<li>
 								<div class="comment-main-level">
 									<div class="comment-avatar"><img src="{{url($com->getUser->avatar)}}" alt=""></div>
@@ -248,6 +255,7 @@
 									</div>
 								</div>
 							</li>
+							@endif
 							@endforeach
 							@endif
 						</ul>
@@ -313,11 +321,13 @@
 						<p class="fexi_header_para"><span class="conjuring_w3">Nội dung<label style="left: 23%;">:</label></span>{{$tab_desc}}</p>
 						<?php $date = date_create($tab->release_date); ?>
 						<p class="fexi_header_para"><span>Khởi chiếu<label style="left: 23%;">:</label></span>{{date_format($date,"d/m/Y")}}</p>
+						@if(!empty($tab_genre))
 						<p class="fexi_header_para"><span style="height: 22px;">Thể loại<label style="left: 23%;">:</label></span>
 							@foreach($tab_genre as $gen)
 							<a href="{{route('genre',$gen->genre_id)}}">{{$gen->description}}</a><b> | </b>
 							@endforeach
 						</p>
+						@endif
 						@if($tab->getRating($tab->movie_id) != 0)
 						<p class="fexi_header_para fexi_header_para1"><span>Rating<label style="left: 23%;">:</label></span><a><i class="fa fa-star" aria-hidden="true"></i></a> {{$tab->getRating($tab->movie_id)}}</p>
 						@endif

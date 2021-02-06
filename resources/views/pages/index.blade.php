@@ -151,7 +151,7 @@
 											</div>
 										</div>
 										<div class="ribben">
-											<p>NEW</p>
+											<p>HOT</p>
 										</div>
 									</div>
 									@endforeach
@@ -223,7 +223,7 @@
 											</div>
 										</div>
 										<div class="ribben">
-											<p>NEW</p>
+											<p>NOW</p>
 										</div>
 									</div>
 									@endforeach
